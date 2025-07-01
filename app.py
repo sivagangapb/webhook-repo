@@ -2,6 +2,10 @@ from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from pymongo import MongoClient
 from datetime import datetime
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 app = Flask(__name__)
 CORS(app)
@@ -9,6 +13,10 @@ CORS(app)
 # MongoDB Setup
 client = MongoClient("mongodb://localhost:27017/")
 db = client["github_events"]
+collection = db["events"]
+mongo_uri = os.getenv("MONGO_URI")
+client = MongoClient(mongo_uri)
+db = client["webhook"]
 collection = db["events"]
 
 @app.route('/')
