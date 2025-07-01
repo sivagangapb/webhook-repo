@@ -1,33 +1,53 @@
-# GitHub Webhook Listener – Flask + MongoDB
+# GitHub Webhook Tracker 🚀
 
-📡 A real-time GitHub webhook listener that tracks **push** and **pull request** events and displays them live via a beautiful web UI.
-
----
-
-## 🚀 Features
-
-- Listens to GitHub `push` and `pull_request` events
-- Saves data to MongoDB
-- Auto-refreshes UI every 15 seconds
-- Modern, card-based responsive interface
-- Built with: Flask, PyMongo, HTML, CSS, LocalTunnel
+A full-stack Python project to capture and display GitHub events like pushes and pull requests in real time using Flask, MongoDB, and a stylish UI.
 
 ---
 
-## ⚙️ Tech Stack
+## 🔗 Live Demo
 
-- Python 3.10+
-- Flask
-- MongoDB
-- Ngrok or LocalTunnel
-- GitHub Webhooks
+🌐 [Webhook App on Render](https://webhook-repo-1-lyuy.onrender.com)
 
 ---
 
-## 🛠️ Setup Instructions
+## 📦 Tech Stack
 
-### 1. Clone the Repo
+- **Backend**: Flask + Python
+- **Frontend**: HTML + Jinja2 + CSS (Dark Green theme)
+- **Database**: MongoDB Atlas (Cloud)
+- **Dev Tools**: GitHub Webhooks, GitHub Actions (simulated), Render for hosting
+
+---
+
+## 🧩 Features
+
+- 🟢 Tracks Push Events
+- 📦 Detects Pull Requests (opened & reopened)
+- ✅ Detects Pull Request Merges
+- 🕒 Shows timestamps in IST
+- 🗃️ Stores events in MongoDB Atlas
+- 🎨 Beautiful dark-themed UI with live updates every 15s
+
+---
+
+## ⚙️ How It Works
+
+1. GitHub Webhook triggers on **push** and **pull_request**
+2. Flask receives the POST data at `/webhook`
+3. MongoDB stores each event with timestamp
+4. `/events` endpoint returns latest 10 events
+5. Frontend polls `/events` every 15s to display them
+
+---
+
+## 📁 Project Structure
 
 ```bash
-git clone https://github.com/sivagangapb/webhook-repo.git
-cd webhook-repo
+webhook-repo/
+├── templates/
+│   └── index.html     # Frontend UI
+├── .env               # MongoDB URI (not pushed to GitHub)
+├── .gitignore
+├── app.py             # Flask backend
+├── requirements.txt
+└── README.md
